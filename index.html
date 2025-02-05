@@ -1,358 +1,185 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Scripts</title>
+    <title>Scripts Web Navigation</title>
     <style>
-        * {
-
-            --secundary-color: rgb(255, 255, 255);
-            --primary-gradient: linear-gradient(to top, #01babd, #44cdc5);
+        :root {
             --primary-color: #01babd;
             --primary-hover: #009fa1;
+            --primary-gradient: linear-gradient(to top, #01babd, #44cdc5);
+            --secondary-color: white;
             --background-first: white;
             --background-second: rgb(233, 233, 233);
+        }
 
-            margin: 0px;
-            padding: 0px;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
             font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
         }
 
-        @media screen and ( min-width: 400px){ 
-            .main{
-                overflow: auto;
-                height: 72vh;
-            }
-        }   
-        @media screen and ( min-width: 958px){ 
-            .main{
-                overflow: auto;
-                height: 82vh;
-            }
-        }   
-
-        body{
-            background: white;
-            overflow-y:visible;
+        html {
+            scroll-behavior: smooth;
         }
+
+        body {
+            background: var(--background-first);
+        }
+
         .header {
-            padding-top: 10px;
             background: var(--primary-gradient);
+            padding: 15px 20px;
+            text-align: center;
             position: relative;
-
-        }
-
-        .header__inline-block {
-            display: inline-block;
-            margin: 0px auto;
-            padding: 0px 10px 10px;
-            text-align: center;
-        }
-        .header__float-right { 
-            position: absolute;
-            right: 0px;
-            bottom: 0px;
-            float: right;
-            margin-right: 20px;
-            background: var(--primary-hover);
-            padding: 10px;;
-            color: white;
-            font-size: 14px;
-            text-align: center;
-        }
-
-        .header__flex{
-            display: flex;
-            gap: 20px;
         }
 
         .header__list {
-            display: grid;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
             list-style: none;
         }
 
-        .header__list--two-items {
-            grid-template-areas:
-                "title title"
-                "item1 item2";
-        }
-
-        .header__list--three-items {
-            grid-template-areas:
-                "title title title"
-                "item1 item2 item3";
-        }
-
         .header__title {
-            grid-area: title;
-            padding-bottom: 3px;
-            border-bottom: 1px solid var(--secundary-color);
-            color: var(--secundary-color);
+            font-size: 16px;
+            color: var(--secondary-color);
             text-transform: uppercase;
-        }
-
-        .header__item-1 {
-            grid-area: item1;
-        }
-
-        .header__item-2 {
-            grid-area: item2;
-        }
-
-        .header__item-3 {
-            grid-area: item3;
-        }
-
-        .header__item-4 {
-            grid-area: item4;
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 5px;
+            margin-bottom: 10px;
         }
 
         .header__buttom {
             display: inline-block;
-            margin: 5px;
-            padding: 10px 10px 10px;
-            background: var(--secundary-color);
-            border-radius: 5px;
-
-            color: var( --primary-color);
+            background: var(--secondary-color);
+            color: var(--primary-color);
             font-size: 15px;
             font-weight: bold;
             text-decoration: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background 0.3s, color 0.3s;
         }
+
         .header__buttom:hover {
-            color: var( --primary-hover);
+            color: var(--primary-hover);
+            background: rgba(255, 255, 255, 0.9);
         }
 
-        .topic{
+        .header__float-right {
+            position: absolute;
+            right: 20px;
+            bottom: 15px;
+            background: var(--primary-hover);
+            color: white;
+            padding: 10px;
+            font-size: 14px;
+            text-align: center;
+            border-radius: 5px;
+        }
+
+        .main {
             padding: 20px;
-            width: 1800px;
+            max-width: 1200px;
+            margin: auto;
         }
 
-        .topic__text{
-            width: 1800px;
-            font-size: 16px;
-            line-height: 2;
-            white-space: pre-line;
+        .topic {
+            background: var(--background-first);
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
-        .topic:nth-child(4n) { 
+
+        .topic:nth-child(even) {
             background: var(--background-second);
         }
 
+        .topic__title {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+
+        .topic__text {
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .header__list {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .header__float-right {
+                position: relative;
+                margin-top: 10px;
+            }
+
+            .main {
+                padding: 15px;
+            }
+        }
     </style>
 </head>
 
 <body>
     <header class="header">
-        <nav class="header__nav">
-            <div class="header__inline-block">
-                <ul class="header__list  header__list--three-items">
-                    <p class="header__title">Grupo 1</p>
-                    <li class="header__item-1"><a href="#TOPIC-1" class="header__buttom" tabindex="1">Titulo 1</a></li>
-                    <li class="header__item-2"><a href="#TOPIC-2" class="header__buttom" tabindex="1">Titulo 2</a></li>
-                    <li class="header__item-3"><a href="#TOPIC-3" class="header__buttom" tabindex="1">Titulo 3</a></li>
-                </ul>
-            </div>
-            <div class="header__inline-block">
-                <ul class="header__list header__list--two-items">
-                    <p class="header__title">Group 2</p>
-                    <li class="header__item-1"><a href="#TOPIC-4" class="header__buttom" tabindex="1">Titulo 4 </a></li>
-                    <li class="header__item-2"><a href="#TOPIC-5" class="header__buttom" tabindex="1">Titulo 5</a></li>
-                </ul>
-            </div>
-            <div class="header__inline-block">
-                <div class="header__flex">
-                    <ul class="header__list  header__list--two-items">
-                        <p class="header__title">Group 3</p>
-                        <li class="header__item-1"><a href="#TOPIC-6" class="header__buttom" tabindex="1">Titulo 6</a></li>
-                        <li class="header__item-2"><a href="#TOPIC-7" class="header__buttom" tabindex="1">Titulo 7</a></li>
-                    </ul>
-                    <ul class="header__list  header__list--two-items">
-                        <p class="header__title">Group 4</p>
-                        <li class="header__item-1"><a href="#TOPIC-8" class="header__buttom" tabindex="1">Titulo 8</a></li>
-                        <li class="header__item-2"><a href="#TOPIC-9" class="header__buttom" tabindex="1">Titulo 9</a></li>
-                    </ul>
-                </div>
-            </div>
+        <nav>
+            <ul class="header__list">
+                <li><p class="header__title">Grupo 1</p></li>
+                <li><a href="#TOPIC-1" class="header__buttom">Título 1</a></li>
+                <li><a href="#TOPIC-2" class="header__buttom">Título 2</a></li>
+                <li><a href="#TOPIC-3" class="header__buttom">Título 3</a></li>
+            </ul>
+            <ul class="header__list">
+                <li><p class="header__title">Grupo 2</p></li>
+                <li><a href="#TOPIC-4" class="header__buttom">Título 4</a></li>
+                <li><a href="#TOPIC-5" class="header__buttom">Título 5</a></li>
+            </ul>
+            <ul class="header__list">
+                <li><p class="header__title">Grupo 3</p></li>
+                <li><a href="#TOPIC-6" class="header__buttom">Título 6</a></li>
+                <li><a href="#TOPIC-7" class="header__buttom">Título 7</a></li>
+            </ul>
+            <ul class="header__list">
+                <li><p class="header__title">Grupo 4</p></li>
+                <li><a href="#TOPIC-8" class="header__buttom">Título 8</a></li>
+                <li><a href="#TOPIC-9" class="header__buttom">Título 9</a></li>
+            </ul>
             <div class="header__float-right">
                 <p>Script <br> by Victor Hugo MS</p>
             </div>
         </nav>
     </header>
+
     <main class="main">
-        <br id="TOPIC-1">
-        <section class="topic">
-            <h1 class="topic__title"> TOPIC 1 </h1>
-            <hr>
-            <pre class="topic__text">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et totam repellendus soluta eos. Eum, inventore minima dolore consequuntur quod enim itaque labore adipisci quis distinctio repudiandae eveniet suscipit. Minima, soluta.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et totam repellendus soluta eos. Eum, inventore minima dolore consequuntur quod enim itaque labore adipisci quis distinctio repudiandae eveniet suscipit. Minima, soluta.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et totam repellendus soluta eos. Eum, inventore minima dolore consequuntur quod enim itaque labore adipisci quis distinctio repudiandae eveniet suscipit. Minima, soluta.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et totam repellendus soluta eos. Eum, inventore minima dolore consequuntur quod enim itaque labore adipisci quis distinctio repudiandae eveniet suscipit. Minima, soluta.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et totam repellendus soluta eos. Eum, inventore minima dolore consequuntur quod enim itaque labore adipisci quis distinctio repudiandae eveniet suscipit. Minima, soluta.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et totam repellendus soluta eos. Eum, inventore minima dolore consequuntur quod enim itaque labore adipisci quis distinctio repudiandae eveniet suscipit. Minima, soluta.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et totam repellendus soluta eos. Eum, inventore minima dolore consequuntur quod enim itaque labore adipisci quis distinctio repudiandae eveniet suscipit. Minima, soluta.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et totam repellendus soluta eos. Eum, inventore minima dolore consequuntur quod enim itaque labore adipisci quis distinctio repudiandae eveniet suscipit. Minima, soluta.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et totam repellendus soluta eos. Eum, inventore minima dolore consequuntur quod enim itaque labore adipisci quis distinctio repudiandae eveniet suscipit. Minima, soluta.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et totam repellendus soluta eos. Eum, inventore minima dolore consequuntur quod enim itaque labore adipisci quis distinctio repudiandae eveniet suscipit. Minima, soluta.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et totam repellendus soluta eos. Eum, inventore minima dolore consequuntur quod enim itaque labore adipisci quis distinctio repudiandae eveniet suscipit. Minima, soluta.
-            </pre>
+        <section id="TOPIC-1" class="topic">
+            <h1 class="topic__title">TOPIC 1</h1>
+            <p class="topic__text">Lorem ipsum dolor sit amet...</p>
         </section>
-        <br id="TOPIC-2">
-        <section class="topic">
-            <h1 class="topic__title"> TOPIC 2 </h1>
-            <hr>
-            <pre class="topic__text">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et totam repellendus soluta eos. Eum, inventore minima dolore consequuntur quod enim itaque labore adipisci quis distinctio repudiandae eveniet suscipit. Minima, soluta.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et totam repellendus soluta eos. Eum, inventore minima dolore consequuntur quod enim itaque labore adipisci quis distinctio repudiandae eveniet suscipit. Minima, soluta.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et totam repellendus soluta eos. Eum, inventore minima dolore consequuntur quod enim itaque labore adipisci quis distinctio repudiandae eveniet suscipit. Minima, soluta.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et totam repellendus soluta eos. Eum, inventore minima dolore consequuntur quod enim itaque labore adipisci quis distinctio repudiandae eveniet suscipit. Minima, soluta.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et totam repellendus soluta eos. Eum, inventore minima dolore consequuntur quod enim itaque labore adipisci quis distinctio repudiandae eveniet suscipit. Minima, soluta.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et totam repellendus soluta eos. Eum, inventore minima dolore consequuntur quod enim itaque labore adipisci quis distinctio repudiandae eveniet suscipit. Minima, soluta.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et totam repellendus soluta eos. Eum, inventore minima dolore consequuntur quod enim itaque labore adipisci quis distinctio repudiandae eveniet suscipit. Minima, soluta.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et totam repellendus soluta eos. Eum, inventore minima dolore consequuntur quod enim itaque labore adipisci quis distinctio repudiandae eveniet suscipit. Minima, soluta.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et totam repellendus soluta eos. Eum, inventore minima dolore consequuntur quod enim itaque labore adipisci quis distinctio repudiandae eveniet suscipit. Minima, soluta.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et totam repellendus soluta eos. Eum, inventore minima dolore consequuntur quod enim itaque labore adipisci quis distinctio repudiandae eveniet suscipit. Minima, soluta.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et totam repellendus soluta eos. Eum, inventore minima dolore consequuntur quod enim itaque labore adipisci quis distinctio repudiandae eveniet suscipit. Minima, soluta.
-            </pre>
+
+        <section id="TOPIC-2" class="topic">
+            <h1 class="topic__title">TOPIC 2</h1>
+            <p class="topic__text">Lorem ipsum dolor sit amet...</p>
         </section>
-        <br id="TOPIC-3">
-        <section class="topic">
-            <h1 class="topic__title"> TOPIC 3 </h1>
-            <hr>
-            <pre class="topic__text">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et totam repellendus soluta eos. Eum, inventore minima dolore consequuntur quod enim itaque labore adipisci quis distinctio repudiandae eveniet suscipit. Minima, soluta.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et totam repellendus soluta eos. Eum, inventore minima dolore consequuntur quod enim itaque labore adipisci quis distinctio repudiandae eveniet suscipit. Minima, soluta.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et totam repellendus soluta eos. Eum, inventore minima dolore consequuntur quod enim itaque labore adipisci quis distinctio repudiandae eveniet suscipit. Minima, soluta.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et totam repellendus soluta eos. Eum, inventore minima dolore consequuntur quod enim itaque labore adipisci quis distinctio repudiandae eveniet suscipit. Minima, soluta.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et totam repellendus soluta eos. Eum, inventore minima dolore consequuntur quod enim itaque labore adipisci quis distinctio repudiandae eveniet suscipit. Minima, soluta.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et totam repellendus soluta eos. Eum, inventore minima dolore consequuntur quod enim itaque labore adipisci quis distinctio repudiandae eveniet suscipit. Minima, soluta.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et totam repellendus soluta eos. Eum, inventore minima dolore consequuntur quod enim itaque labore adipisci quis distinctio repudiandae eveniet suscipit. Minima, soluta.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et totam repellendus soluta eos. Eum, inventore minima dolore consequuntur quod enim itaque labore adipisci quis distinctio repudiandae eveniet suscipit. Minima, soluta.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et totam repellendus soluta eos. Eum, inventore minima dolore consequuntur quod enim itaque labore adipisci quis distinctio repudiandae eveniet suscipit. Minima, soluta.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et totam repellendus soluta eos. Eum, inventore minima dolore consequuntur quod enim itaque labore adipisci quis distinctio repudiandae eveniet suscipit. Minima, soluta.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et totam repellendus soluta eos. Eum, inventore minima dolore consequuntur quod enim itaque labore adipisci quis distinctio repudiandae eveniet suscipit. Minima, soluta.
-            </pre>
+
+        <section id="TOPIC-3" class="topic">
+            <h1 class="topic__title">TOPIC 3</h1>
+            <p class="topic__text">Lorem ipsum dolor sit amet...</p>
         </section>
-        <br id="TOPIC-4">
-        <section class="topic">
-            <h1 class="topic__title"> TOPIC 4 </h1>
-            <hr>
-            <pre class="topic__text">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et totam repellendus soluta eos. Eum, inventore minima dolore consequuntur quod enim itaque labore adipisci quis distinctio repudiandae eveniet suscipit. Minima, soluta.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et totam repellendus soluta eos. Eum, inventore minima dolore consequuntur quod enim itaque labore adipisci quis distinctio repudiandae eveniet suscipit. Minima, soluta.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et totam repellendus soluta eos. Eum, inventore minima dolore consequuntur quod enim itaque labore adipisci quis distinctio repudiandae eveniet suscipit. Minima, soluta.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et totam repellendus soluta eos. Eum, inventore minima dolore consequuntur quod enim itaque labore adipisci quis distinctio repudiandae eveniet suscipit. Minima, soluta.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et totam repellendus soluta eos. Eum, inventore minima dolore consequuntur quod enim itaque labore adipisci quis distinctio repudiandae eveniet suscipit. Minima, soluta.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et totam repellendus soluta eos. Eum, inventore minima dolore consequuntur quod enim itaque labore adipisci quis distinctio repudiandae eveniet suscipit. Minima, soluta.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et totam repellendus soluta eos. Eum, inventore minima dolore consequuntur quod enim itaque labore adipisci quis distinctio repudiandae eveniet suscipit. Minima, soluta.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et totam repellendus soluta eos. Eum, inventore minima dolore consequuntur quod enim itaque labore adipisci quis distinctio repudiandae eveniet suscipit. Minima, soluta.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et totam repellendus soluta eos. Eum, inventore minima dolore consequuntur quod enim itaque labore adipisci quis distinctio repudiandae eveniet suscipit. Minima, soluta.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et totam repellendus soluta eos. Eum, inventore minima dolore consequuntur quod enim itaque labore adipisci quis distinctio repudiandae eveniet suscipit. Minima, soluta.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et totam repellendus soluta eos. Eum, inventore minima dolore consequuntur quod enim itaque labore adipisci quis distinctio repudiandae eveniet suscipit. Minima, soluta.
-            </pre>
+
+        <section id="TOPIC-4" class="topic">
+            <h1 class="topic__title">TOPIC 4</h1>
+            <p class="topic__text">Lorem ipsum dolor sit amet...</p>
         </section>
-        <br id="TOPIC-5">
-        <section class="topic">
-            <h1 class="topic__title"> TOPIC 5 </h1>
-            <hr>
-            <pre class="topic__text">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et totam repellendus soluta eos. Eum, inventore minima dolore consequuntur quod enim itaque labore adipisci quis distinctio repudiandae eveniet suscipit. Minima, soluta.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et totam repellendus soluta eos. Eum, inventore minima dolore consequuntur quod enim itaque labore adipisci quis distinctio repudiandae eveniet suscipit. Minima, soluta.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et totam repellendus soluta eos. Eum, inventore minima dolore consequuntur quod enim itaque labore adipisci quis distinctio repudiandae eveniet suscipit. Minima, soluta.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et totam repellendus soluta eos. Eum, inventore minima dolore consequuntur quod enim itaque labore adipisci quis distinctio repudiandae eveniet suscipit. Minima, soluta.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et totam repellendus soluta eos. Eum, inventore minima dolore consequuntur quod enim itaque labore adipisci quis distinctio repudiandae eveniet suscipit. Minima, soluta.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et totam repellendus soluta eos. Eum, inventore minima dolore consequuntur quod enim itaque labore adipisci quis distinctio repudiandae eveniet suscipit. Minima, soluta.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et totam repellendus soluta eos. Eum, inventore minima dolore consequuntur quod enim itaque labore adipisci quis distinctio repudiandae eveniet suscipit. Minima, soluta.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et totam repellendus soluta eos. Eum, inventore minima dolore consequuntur quod enim itaque labore adipisci quis distinctio repudiandae eveniet suscipit. Minima, soluta.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et totam repellendus soluta eos. Eum, inventore minima dolore consequuntur quod enim itaque labore adipisci quis distinctio repudiandae eveniet suscipit. Minima, soluta.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et totam repellendus soluta eos. Eum, inventore minima dolore consequuntur quod enim itaque labore adipisci quis distinctio repudiandae eveniet suscipit. Minima, soluta.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et totam repellendus soluta eos. Eum, inventore minima dolore consequuntur quod enim itaque labore adipisci quis distinctio repudiandae eveniet suscipit. Minima, soluta.
-            </pre>
-        </section>
-        <br id="TOPIC-6">
-        <section class="topic">
-            <h1 class="topic__title"> TOPIC 6 </h1>
-            <hr>
-            <pre class="topic__text">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et totam repellendus soluta eos. Eum, inventore minima dolore consequuntur quod enim itaque labore adipisci quis distinctio repudiandae eveniet suscipit. Minima, soluta.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et totam repellendus soluta eos. Eum, inventore minima dolore consequuntur quod enim itaque labore adipisci quis distinctio repudiandae eveniet suscipit. Minima, soluta.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et totam repellendus soluta eos. Eum, inventore minima dolore consequuntur quod enim itaque labore adipisci quis distinctio repudiandae eveniet suscipit. Minima, soluta.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et totam repellendus soluta eos. Eum, inventore minima dolore consequuntur quod enim itaque labore adipisci quis distinctio repudiandae eveniet suscipit. Minima, soluta.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et totam repellendus soluta eos. Eum, inventore minima dolore consequuntur quod enim itaque labore adipisci quis distinctio repudiandae eveniet suscipit. Minima, soluta.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et totam repellendus soluta eos. Eum, inventore minima dolore consequuntur quod enim itaque labore adipisci quis distinctio repudiandae eveniet suscipit. Minima, soluta.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et totam repellendus soluta eos. Eum, inventore minima dolore consequuntur quod enim itaque labore adipisci quis distinctio repudiandae eveniet suscipit. Minima, soluta.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et totam repellendus soluta eos. Eum, inventore minima dolore consequuntur quod enim itaque labore adipisci quis distinctio repudiandae eveniet suscipit. Minima, soluta.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et totam repellendus soluta eos. Eum, inventore minima dolore consequuntur quod enim itaque labore adipisci quis distinctio repudiandae eveniet suscipit. Minima, soluta.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et totam repellendus soluta eos. Eum, inventore minima dolore consequuntur quod enim itaque labore adipisci quis distinctio repudiandae eveniet suscipit. Minima, soluta.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et totam repellendus soluta eos. Eum, inventore minima dolore consequuntur quod enim itaque labore adipisci quis distinctio repudiandae eveniet suscipit. Minima, soluta.
-            </pre>
-        </section>
-        <br id="TOPIC-7">
-        <section class="topic">
-            <h1 class="topic__title"> TOPIC 7 </h1>
-            <hr>
-            <pre class="topic__text">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et totam repellendus soluta eos. Eum, inventore minima dolore consequuntur quod enim itaque labore adipisci quis distinctio repudiandae eveniet suscipit. Minima, soluta.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et totam repellendus soluta eos. Eum, inventore minima dolore consequuntur quod enim itaque labore adipisci quis distinctio repudiandae eveniet suscipit. Minima, soluta.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et totam repellendus soluta eos. Eum, inventore minima dolore consequuntur quod enim itaque labore adipisci quis distinctio repudiandae eveniet suscipit. Minima, soluta.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et totam repellendus soluta eos. Eum, inventore minima dolore consequuntur quod enim itaque labore adipisci quis distinctio repudiandae eveniet suscipit. Minima, soluta.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et totam repellendus soluta eos. Eum, inventore minima dolore consequuntur quod enim itaque labore adipisci quis distinctio repudiandae eveniet suscipit. Minima, soluta.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et totam repellendus soluta eos. Eum, inventore minima dolore consequuntur quod enim itaque labore adipisci quis distinctio repudiandae eveniet suscipit. Minima, soluta.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et totam repellendus soluta eos. Eum, inventore minima dolore consequuntur quod enim itaque labore adipisci quis distinctio repudiandae eveniet suscipit. Minima, soluta.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et totam repellendus soluta eos. Eum, inventore minima dolore consequuntur quod enim itaque labore adipisci quis distinctio repudiandae eveniet suscipit. Minima, soluta.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et totam repellendus soluta eos. Eum, inventore minima dolore consequuntur quod enim itaque labore adipisci quis distinctio repudiandae eveniet suscipit. Minima, soluta.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et totam repellendus soluta eos. Eum, inventore minima dolore consequuntur quod enim itaque labore adipisci quis distinctio repudiandae eveniet suscipit. Minima, soluta.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et totam repellendus soluta eos. Eum, inventore minima dolore consequuntur quod enim itaque labore adipisci quis distinctio repudiandae eveniet suscipit. Minima, soluta.
-            </pre>
-        </section>
-        <br id="TOPIC-8">
-        <section class="topic">
-            <h1 class="topic__title"> TOPIC 8 </h1>
-            <hr>
-            <pre class="topic__text">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et totam repellendus soluta eos. Eum, inventore minima dolore consequuntur quod enim itaque labore adipisci quis distinctio repudiandae eveniet suscipit. Minima, soluta.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et totam repellendus soluta eos. Eum, inventore minima dolore consequuntur quod enim itaque labore adipisci quis distinctio repudiandae eveniet suscipit. Minima, soluta.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et totam repellendus soluta eos. Eum, inventore minima dolore consequuntur quod enim itaque labore adipisci quis distinctio repudiandae eveniet suscipit. Minima, soluta.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et totam repellendus soluta eos. Eum, inventore minima dolore consequuntur quod enim itaque labore adipisci quis distinctio repudiandae eveniet suscipit. Minima, soluta.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et totam repellendus soluta eos. Eum, inventore minima dolore consequuntur quod enim itaque labore adipisci quis distinctio repudiandae eveniet suscipit. Minima, soluta.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et totam repellendus soluta eos. Eum, inventore minima dolore consequuntur quod enim itaque labore adipisci quis distinctio repudiandae eveniet suscipit. Minima, soluta.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et totam repellendus soluta eos. Eum, inventore minima dolore consequuntur quod enim itaque labore adipisci quis distinctio repudiandae eveniet suscipit. Minima, soluta.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et totam repellendus soluta eos. Eum, inventore minima dolore consequuntur quod enim itaque labore adipisci quis distinctio repudiandae eveniet suscipit. Minima, soluta.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et totam repellendus soluta eos. Eum, inventore minima dolore consequuntur quod enim itaque labore adipisci quis distinctio repudiandae eveniet suscipit. Minima, soluta.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et totam repellendus soluta eos. Eum, inventore minima dolore consequuntur quod enim itaque labore adipisci quis distinctio repudiandae eveniet suscipit. Minima, soluta.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et totam repellendus soluta eos. Eum, inventore minima dolore consequuntur quod enim itaque labore adipisci quis distinctio repudiandae eveniet suscipit. Minima, soluta.
-            </pre>
-        </section>
-        <br id="TOPIC-9">
-        <section class="topic">
-            <h1 class="topic__title"> TOPIC 9 </h1>
-            <hr>
-            <pre class="topic__text">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et totam repellendus soluta eos. Eum, inventore minima dolore consequuntur quod enim itaque labore adipisci quis distinctio repudiandae eveniet suscipit. Minima, soluta.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et totam repellendus soluta eos. Eum, inventore minima dolore consequuntur quod enim itaque labore adipisci quis distinctio repudiandae eveniet suscipit. Minima, soluta.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et totam repellendus soluta eos. Eum, inventore minima dolore consequuntur quod enim itaque labore adipisci quis distinctio repudiandae eveniet suscipit. Minima, soluta.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et totam repellendus soluta eos. Eum, inventore minima dolore consequuntur quod enim itaque labore adipisci quis distinctio repudiandae eveniet suscipit. Minima, soluta.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et totam repellendus soluta eos. Eum, inventore minima dolore consequuntur quod enim itaque labore adipisci quis distinctio repudiandae eveniet suscipit. Minima, soluta.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et totam repellendus soluta eos. Eum, inventore minima dolore consequuntur quod enim itaque labore adipisci quis distinctio repudiandae eveniet suscipit. Minima, soluta.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et totam repellendus soluta eos. Eum, inventore minima dolore consequuntur quod enim itaque labore adipisci quis distinctio repudiandae eveniet suscipit. Minima, soluta.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et totam repellendus soluta eos. Eum, inventore minima dolore consequuntur quod enim itaque labore adipisci quis distinctio repudiandae eveniet suscipit. Minima, soluta.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et totam repellendus soluta eos. Eum, inventore minima dolore consequuntur quod enim itaque labore adipisci quis distinctio repudiandae eveniet suscipit. Minima, soluta.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et totam repellendus soluta eos. Eum, inventore minima dolore consequuntur quod enim itaque labore adipisci quis distinctio repudiandae eveniet suscipit. Minima, soluta.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et totam repellendus soluta eos. Eum, inventore minima dolore consequuntur quod enim itaque labore adipisci quis distinctio repudiandae eveniet suscipit. Minima, soluta.
-            </pre>
-        </section>
-        
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
     </main>
 </body>
 </html>
